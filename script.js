@@ -32,6 +32,13 @@ function playRound(playerSelection, computerSelection) {
   } else if (playerSelection == "Gun") {
     console.log("I can't let you do that...");
   }
+  return;
+}
+
+function playGame(playRound) {
+  for (i = 0; i < 5; i++) {
+    playRound;
+  }
 }
 
 const playerSelection = "Rock";
