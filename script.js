@@ -1,3 +1,6 @@
+let playerScore = 0;
+let computerScore = 0;
+
 function getComputerChoice(randomChoice) {
   var choice = ["Rock", "Paper", "Scissors"];
   var random = Math.floor(Math.random() * choice.length);
@@ -13,23 +16,30 @@ function playRound(playerSelection, computerSelection) {
     (playerSelection === "Scissors" && computerSelection === "Paper") ||
     (playerSelection === "Paper" && computerSelection === "Rock")
   ) {
+    playerScore++;
     return "YOU WIN! " + playerSelection + " beats " + computerSelection;
   } else if (
     (computerSelection === "Rock" && playerSelection === "Scissors") ||
     (computerSelection === "Scissors" && playerSelection === "Paper") ||
     (computerSelection === "Paper" && playerSelection === "Rock")
   ) {
+    computerScore++;
     return "YOU LOSE! " + computerSelection + " beats " + playerSelection;
   }
 }
 
 function playGame(playRound) {
-  for (i = 0; i < 5; i++) {
-    playRound();
-  }
-  console.log(playRound(playerSelection, computerSelection));
+  do {
+    const playerSelection = prompt("Rock, Paper, or Scissors?");
+    const computerSelection = getComputerChoice();
+    console.log(playRound(playerSelection, computerSelection));
+    if (computerScore === 5) {
+      console.log("You lost the game. Try again.");
+    }
+    if (playerScore === 5) {
+      console.log("Congrats you won!");
+    }
+  } while (playerScore != 5 || computerScore != 5);
 }
 
-const playerSelection = prompt("Rock, Paper, or Scissors?");
-const computerSelection = getComputerChoice();
 console.log(playGame(playRound));
